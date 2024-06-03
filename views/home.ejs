@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="authstyle.css">
+    <link rel="stylesheet" href="tablestyle.css">
+</head>
+<body>
+    <h1><%= message %></h1>
+    <% if(betsData.length > 0){ %>
+        <table border="3">
+            <thead>
+                <th>Game</th>
+                <th>Bets</th>
+                <th>Placed_At</th>
+            </thead>
+            <tbody>
+                <% betsData.forEach((ele) => { %>
+                    <tr>
+                        <td> <%= ele.game %></td>
+                        <td>₹ <%= ele.price %></td>
+                        <td><%= ele.placed_at %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else{ %>
+        <h1>You haven't placed any bets till now</h1>
+    <% } %>
+
+    <a href="/placebets"><button>Place bets</button></a>
+    <% if(userData.role === "admin"){ %>
+        <a href="/dashboard"><button>Go to Dashboard</button></a>
+    <% } %>
+</body>
+</html>

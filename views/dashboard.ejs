@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="tablestyle.css">
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <% if(betsData.length > 0){ %>
+
+        <table>
+            <tr>
+                <td></td>
+                <td>
+                    <form action="/searchuname" method="POST">
+                        <input type="text" name="username" placeholder="enter username to search">
+                        <button class="sbtbtn" type="submit">Submit</button>
+                    </form>
+                </td>
+                <td></td>
+                <td>
+                    <form action="/searchgame" method="POST">
+                        <input type="text" name="game" placeholder="enter game to search">
+                        <button class="sbtbtn" type="submit">Submit</button>
+                    </form>
+                </td>
+            </tr>
+            <thead>
+                <th>S.No </th>
+                <th>Username </th>
+                <th>role</th>
+                <th>Game</th>
+                <th>Price</th>
+                <th>Placed At</th>
+            </thead>
+            <tbody>
+                <% betsData.forEach((ele,ind) => { %>
+                    <tr>
+                        <td><%= ind + 1 %></td>
+                        <td><%= ele.username %></td>
+                        <td><%= ele.role %></td>
+                        <td><%= ele.game %></td>
+                        <td>₹ <%= ele.price %></td>
+                        <td><%= ele.placed_at %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% }else{ %>
+        <h1>No user has placed any bets till now...</h1>
+    <% } %>
+    <a href="/"><button>Go Back</button></a>
+</body>
+</html>
